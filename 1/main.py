@@ -28,8 +28,11 @@ def find_two_for_total(sorted_numbers: List[int], total: int) -> Union[Tuple[int
 
 def part1(numbers: List[int]) -> int:
     sorted_numbers = sorted(numbers)
-    n1,n2 = find_two_for_total(sorted_numbers, 2020)
-    return n1*n2
+    values = find_two_for_total(sorted_numbers, 2020)
+    if values:
+        n1,n2 = values
+        return n1*n2
+    return -1
 
 def part2(numbers: List[int]) -> int:
     sorted_numbers = sorted(numbers)
@@ -40,6 +43,7 @@ def part2(numbers: List[int]) -> int:
             if values:
                 n1,n2 = values
                 return n*n1*n2
+    return -1
             
 
 def run(file_path: Path) -> None:
