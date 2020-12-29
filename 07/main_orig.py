@@ -4,7 +4,7 @@ import sys
 from typing import List, Tuple, Dict, Set
 import copy
 
-def parse_file(file_path: str) -> Tuple[Set[str], Set[Tuple[str, str, int]]]:
+def parse_file(file_path: Path) -> Tuple[Set[str], Set[Tuple[str, str, int]]]:
     colors: Set[str] = set()
     all_rules: Set[Tuple[str, str, int]] = set()
     with file_path.open("r") as file:

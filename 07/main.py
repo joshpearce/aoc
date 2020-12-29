@@ -6,9 +6,9 @@ from collections import defaultdict
 # modifying my solution more simple, inspired by:
 # https://github.com/James-Ansley/adventofcode/blob/master/answers/day07.py
 
-def parse_file(file_path: str) -> Tuple[Dict[str, List[Tuple[int, str]]], Dict[str, Set[str]]]:
-    forward_edges: Dict[str, List[Tuple(int, str)]] = {}
-    backward_edges: Dict[str, Set(str)] = defaultdict(set)
+def parse_file(file_path: Path) -> Tuple[Dict[str, List[Tuple[str, int]]], Dict[str, Set[str]]]:
+    forward_edges: Dict[str, List[Tuple[str, int]]] = {}
+    backward_edges: Dict[str, Set[str]] = defaultdict(set)
     with file_path.open("r") as file:
         for line in file.readlines():
             parts = line.split("bags contain")
