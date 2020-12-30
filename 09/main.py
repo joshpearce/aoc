@@ -19,20 +19,11 @@ def part2(nums: List[int], invalid_num: int) -> int:
             if invalid_num == sum(nums[j:j+i]):
                 return min(nums[j:j+i]) + max(nums[j:j+i])
 
-
-        
-    
-
-
-    return 0
-
 def run(file_path: Path) -> None:
     nums = [int(l) for l in file_path.read_text().split('\n')[0:-1]]
     invalid_num = part1(nums)
     print(invalid_num)
     print(part2(nums, invalid_num))
-
-
 
 if __name__ == "__main__":
     file_path = Path(__file__).parent / "input.txt"
