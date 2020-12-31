@@ -14,7 +14,6 @@ def status_at(r: int, c: int, seats: List[str]) -> str:
 
 def occ_sightline(r: int, c: int, seats: List[str], extent: int = 1) -> int:
 
-    m = 1
     vecs = ['.'] * 8
     for m in range(1, extent+1):
         n = status_at(r-m,c, seats)
