@@ -1,20 +1,18 @@
 #!/usr/bin/env python3
 
-from os import error
 import sys
 import os.path
 sys.path.append(
     os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
 
 from pathlib import Path
-from typing import Iterator
-from contextlib import suppress
 from utils import advent
 from functools import reduce
 
 
 if __name__ == "__main__":
     file_path = Path(__file__).parent / "input.txt"
+    # get 2d array of ints
     matrix = advent.read_num_array_from_file(file_path)
     length = len(matrix)
 
@@ -24,6 +22,7 @@ if __name__ == "__main__":
     gamma_num = reduce(lambda a, b: (a << 1) + b, gamma)
     print(f"gamma: {gamma_num}")
 
+    # 50/50 is undefined in the instructions for part 1
     for c in gamma:
         if c != 0 and length / c == 2:
             raise ValueError("Ambiguous input")
