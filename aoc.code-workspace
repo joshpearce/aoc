@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"python.defaultInterpreterPath": "${workspaceFolder}/env/bin/python",
+		"files.exclude": {
+			"**/env": true
+		},
+		"search.exclude": {
+			"**/env": true
+		}
+	}
+}
