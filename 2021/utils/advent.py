@@ -23,3 +23,6 @@ def read_lines_from_file(path:Path) -> Iterator[str]:
     with path.open("r") as file:
         lines = file.read().strip().split('\n')
         return lines
+
+def transpose(l1):
+    return list(map(list, zip(*l1)))
