@@ -10,7 +10,7 @@ def read_tuples_from_file(path: Path) -> Iterator[tuple]:
 
 def read_num_array_from_file(path: Path) -> List[List[int]]:
     with path.open("r") as file:
-        lines = file.read().split()
+        lines = file.read().strip().split('\n')
         return [list(map(int, list(line))) for line in lines]
 
 def read_numbers_from_file(path: Path) -> Iterator[int]:
@@ -18,3 +18,8 @@ def read_numbers_from_file(path: Path) -> Iterator[int]:
         for line in file.readlines():
             with suppress(ValueError):
                 yield int(line)
+
+def read_lines_from_file(path:Path) -> Iterator[str]:
+    with path.open("r") as file:
+        lines = file.read().strip().split('\n')
+        return lines
