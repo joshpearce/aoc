@@ -19,7 +19,7 @@ def read_numbers_from_file(path: Path) -> Iterator[int]:
             with suppress(ValueError):
                 yield int(line)
 
-def read_lines_from_file(path:Path) -> Iterator[str]:
+def read_lines_from_file(path:Path) -> List[str]:
     with path.open("r") as file:
         lines = file.read().strip().split('\n')
         return lines
