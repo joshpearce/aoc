@@ -8,7 +8,7 @@ sys.path.append(
 
 from pathlib import Path
 from utils import advent
-from collections import defaultdict, Counter
+from collections import Counter
 from itertools import chain
 
 if __name__ == "__main__":
