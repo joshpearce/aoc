@@ -12,6 +12,11 @@ from utils import advent
 import numpy as np
 from math import prod
 
+def write_out(arr):
+    out_path = Path(__file__).parent / "output.txt"
+    with out_path.open("w") as out:
+        out.write("\n".join(["".join(map(str, r)) for r in arr]))
+
 def get_neighbors(i, j, arr):
     neighbors_idxs = []
     if i > 0: 
@@ -24,7 +29,7 @@ def get_neighbors(i, j, arr):
         neighbors_idxs.append((i, j+1))
     return neighbors_idxs
 
-def mark_basin(pt, arr):
+def mark_basin(pt, arr, in_basin=False):
     basin_size = 0
     if arr[pt] == 9:
         return basin_size
@@ -32,11 +37,13 @@ def mark_basin(pt, arr):
     neighbors_idxs_t = np.array(neighbors_idxs).T.tolist() # transpose to [[i1, i2, ...], [j1, j2, ...]]
     neighbors_vals = a[tuple(neighbors_idxs_t)]
 
-    if neighbors_vals.min() >= a[pt]:
-        neighbors_idxs = list(filter(lambda n: arr[n] != 9, neighbors_idxs))
+    if neighbors_vals.min() > a[pt] or in_basin:
+        neighbors_idxs = list(filter(lambda n: arr[n] > arr[pt], neighbors_idxs))
         basin_size = 1 
-        a[pt] = 9
-        basin_size += sum([mark_basin(pt, a) for pt in neighbors_idxs])
+        arr[pt] = 9
+        basin_size += sum([mark_basin(pt, arr, True) for pt in neighbors_idxs])
+    if basin_size == 0 and in_basin:
+        basin_size = 1
     return basin_size
 
 if __name__ == "__main__":
@@ -57,11 +64,16 @@ if __name__ == "__main__":
     print(total)
 
     # part 2
+    import copy
     basin_sizes = []
     for i in range(a.shape[0]):
         for j in range(a.shape[1]):
             basin_size = mark_basin((i, j), a)
             if basin_size:
                 basin_sizes.append(basin_size)
+                write_out(a)
+                pass
     
     print( prod(sorted(basin_sizes)[-3:] ))
+
+    
