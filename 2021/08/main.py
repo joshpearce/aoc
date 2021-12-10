@@ -98,6 +98,4 @@ if __name__ == "__main__":
         values.append(v)
     
     print(sum(values))
-            
-
-        
+    
