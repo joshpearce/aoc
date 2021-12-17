@@ -2,3 +2,4 @@ mypy
 numpy
 more_itertools
 Dijkstar
+bitarray
