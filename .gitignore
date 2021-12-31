@@ -130,3 +130,18 @@ dmypy.json
 
 # Mac files
 .DS_Store
+
+# C# stuff
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+bin/
+Bin/
+obj/
+Obj/
