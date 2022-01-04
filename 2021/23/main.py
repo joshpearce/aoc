@@ -2,6 +2,7 @@
 from copy import deepcopy
 from collections import namedtuple
 import queue
+import sys
 
 Move = namedtuple('Move', 'src, dst, steps')
 
@@ -86,7 +87,7 @@ def solved(board):
 
 if __name__ == "__main__":
 
-    solutions = set()
+    solutions = set([sys.maxsize])
     seen = set()
     queue = queue.PriorityQueue()
     queue.put((0, part_2_board))
@@ -97,18 +98,19 @@ if __name__ == "__main__":
         moves = all_possible_moves_to_hall(board) + all_possible_moves_to_room(board)
         for src, dst, steps in moves:
             new_energy = energy + steps * move_cost[board[src[0]][src[1]]]
-            new_board = deepcopy(board)
-            new_board[dst[0]][dst[1]] = new_board[src[0]][src[1]]
-            new_board[src[0]][src[1]] = '.'
-            if solved(new_board):
-                solutions.add(new_energy)
-                print(min(solutions))
-                print(f"queue size {queue.qsize()}")
-            else:
-                board_tuple = board_to_tuple(new_board)
-                if (board_tuple, new_energy) not in seen:
-                    queue.put((-new_energy, new_board))
-                    seen.add((board_tuple, new_energy))
+            if new_energy < min(solutions):
+                new_board = deepcopy(board)
+                new_board[dst[0]][dst[1]] = new_board[src[0]][src[1]]
+                new_board[src[0]][src[1]] = '.'
+                if solved(new_board):
+                    solutions.add(new_energy)
+                    print(min(solutions))
+                    print(f"queue size {queue.qsize()}")
+                else:
+                    board_tuple = board_to_tuple(new_board)
+                    if (board_tuple, new_energy) not in seen:
+                        queue.put((-new_energy, new_board))
+                        seen.add((board_tuple, new_energy))
 
     print()
     print(min(solutions))
