@@ -64,7 +64,9 @@ int main(int argc, char* argv[]) {
             if (z == 0) {
                 answer = i;
                 std::cout << answer << std::endl;
-                return 0;
+                if (inc == 1) {
+                    return 0;
+                }
             }  
         }
         if (i % 10000000 == 0) {
