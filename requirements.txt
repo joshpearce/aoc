@@ -3,4 +3,4 @@ numpy
 more_itertools
 Dijkstar
 bitarray
-advent-of-code-py
+advent-of-code-data
